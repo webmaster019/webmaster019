@@ -1,0 +1,5 @@
+{
+    "require": {
+        "lefuturiste/localstorage": "^1.4"
+    }
+}
