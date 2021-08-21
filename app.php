@@ -13,6 +13,6 @@ $overwriteENV = true;
 $Loader = (new josegonzalez\Dotenv\Loader('App/Config/.env'))
     ->parse()
     ->toEnv($overwriteENV);
-require(dirname(__FILE__) . '/router.php');
+require(dirname(__FILE__) . '/routes.php');
 
 ?>
