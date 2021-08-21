@@ -42,13 +42,52 @@ class Agent
 
         }else return false;
     }
-    public function verif_user_by_login($login)
+    public function Edit_User(int $idUtilisateur,string $nomUtilisateur,string $postNomUtilisateur,string $roleUtilisateur,string $login)
+    {
+        if (!empty($nomUtilisateur) && !empty($postNomUtilisateur) && !empty($roleUtilisateur) && !empty($login) && !empty($idUtilisateur)) {
+            return $this->DB->Edit_User( $idUtilisateur, $nomUtilisateur, $postNomUtilisateur, $roleUtilisateur, $login);
+
+        }else return false;
+    }
+
+    /**
+     * @return false|object
+     */
+    public function getAllUsers()
+    {
+        return $this->DB->getAllUsers();
+
+    }
+
+    /**
+     * @param string $login
+     * @return false|object
+     */
+    public function verif_user_by_login(string $login)
     {
         if (!empty($login)){
             return $this->DB->verif_user_by_login($login);
         }else return false;
 
     }
+
+    /**
+     * @param int $idUtilisateur
+     * @return false|object
+     */
+    public function verif_user_by_id(int $idUtilisateur)
+    {
+        if (!empty($idUtilisateur)) {
+            return $this->DB->verif_user_by_id( $idUtilisateur);
+
+        }else return false;
+    }
+
+    /**
+     * @param string $login
+     * @param string $password
+     * @return false|object
+     */
 
     public function loginUser(string $login,string $password)
     {
