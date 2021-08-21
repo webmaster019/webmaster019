@@ -5,14 +5,24 @@
  */
 class Routeur
 {
+
     private static $_routes=[];
     private static $_matches;
-    public static function get($route,$controller)
+
+    /**
+     * @param string $route
+     * @param object $controller
+     */
+    public static function get(string $route,object $controller)
     {
       $route=trim($route,'/');
       self::$_routes[$route]=$controller;
 
     }
+
+    /**
+     * @return false|mixed|void
+     */
     public static function run()
     {
       foreach (self::$_routes as $route => $controller) {
@@ -22,7 +32,13 @@ class Routeur
       }
       return self::erreur();
     }
-    public static function match($url,$route)
+
+    /**
+     * @param string $url
+     * @param string $route
+     * @return bool
+     */
+    public static function match(string $url,string $route)
     {
       $path=preg_replace('#{[a-z]+}#','([a-z0-9\-]+)\/?',$route);
       if(!preg_match("#^$path$#",$url,$matches)){
@@ -32,16 +48,20 @@ class Routeur
       self::$_matches=$matches;
       return true;
     }
-    public static function call($controller)
+
+    /**
+     * @param object $controller
+     * @return false|mixed
+     */
+    public static function call(object  $controller)
     {
-/*        $params = explode('@', $controller);
-        $controller = $params[0];
-        require("Controllers/" . $controller . ".php");
-        $controller = new $controller();
-        return call_user_func_array([$controller, $params[1]], self::$_matches);*/
         return call_user_func_array($controller, self::$_matches);
 
     }
+
+    /**
+     * @return view404
+     */
     public static  function erreur()
     {
     require 'Views/404.php';
