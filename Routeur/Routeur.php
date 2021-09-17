@@ -11,9 +11,9 @@ class Routeur
 
     /**
      * @param string $route
-     * @param object $controller
+     * @param function $controller
      */
-    public static function get(string $route,object $controller)
+    public static function get(string $route, $controller)
     {
       $route=trim($route,'/');
       self::$_routes[$route]=$controller;

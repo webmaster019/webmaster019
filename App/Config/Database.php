@@ -1,8 +1,8 @@
 <?php
 /**
  * Cette classe contient toutes les requete possible a la base des donnés
- * les information de conviguration ses trouve dans le fichier .env se trouvent dans le repertoir config
- * et accessible dans la variable $ENV
+ * les information de configuration ses trouve dans le fichier .env se trouvent dans le repertoir config
+ * et accessible dans la variable $_ENV
  *
  * @author :webmaster019
  * @contact:+243972673616
@@ -43,24 +43,24 @@ class Database
     /*
      * Methode principale de requete 
      */
-    public function select($sql , $data =array()){
+    /**
+     * @param string $sql
+     * @param array $data
+     * @return array|false
+     */
+    public function select(string $sql ,array $data =array()){
         $req=$this->db->prepare($sql);
         $req->execute($data);
         return $req->fetchAll(PDO::FETCH_OBJ);
 
     }
-    public function insert($sql , $data =array()){
-        $req=$this->db->prepare($sql);
-        $req->execute($data);
-        return $req;
 
-    }   public function delete($sql , $data =array()){
-        $req=$this->db->prepare($sql);
-        $req->execute($data);
-        return $req;
-
-    }
-    public function update($sql , $data =array()){
+    /**
+     * @param string $sql
+     * @param array $data
+     * @return false|PDOStatement
+     */
+    public function insert(string $sql ,array $data =array()){
         $req=$this->db->prepare($sql);
         $req->execute($data);
         return $req;
@@ -68,12 +68,35 @@ class Database
     }
 
     /**
-     * @param int $offset
+     * @param string $sql
+     * @param array $data
+     * @return false|PDOStatement
      */
-    public function setOffset($offset)
-    {
-        $this->offset = $offset;
+    public function delete(string $sql ,array $data =array()){
+        $req=$this->db->prepare($sql);
+        $req->execute($data);
+        return $req;
+
     }
+
+    /**
+     * @param string $sql
+     * @param array $data
+     * @return false|PDOStatement
+     */
+    public function update(string $sql , array $data =array()){
+        $req=$this->db->prepare($sql);
+        $req->execute($data);
+        return $req;
+
+    }
+
+    /**
+     * exemple requete de la base des donnees
+     * entre vos requetes ici
+     */
+
+
 
 
 
