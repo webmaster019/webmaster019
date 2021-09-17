@@ -7,5 +7,10 @@ class UserControl
         require "Views/index.php";
 
     }
+    public function param($id)
+    {
+        require "Views/param.php";
+
+    }
 
 }
