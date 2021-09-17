@@ -17,21 +17,6 @@ Routeur::get("/",function (){
  * @params function
  */
 Routeur::get("/user/{id}",function ($id){
-    require "Views/param.php.php";
+    require "Views/param.php";
 });
-/**
- *Root avec Controller classe
- * @example Routeur::get("/controller",$control->index());
- * @params sting root
- * @params function funtion
- */
-$control=new UserControl();
-Routeur::get("/controller",$control->index());
-/**
- *Root avec Controller classe
- * @example Routeur::get("/controller",$control->index());
- * @params sting root
- * @params function funtion avec param
- */
-Routeur::get("/controller/{id}",$control->param($id));
 ?>
